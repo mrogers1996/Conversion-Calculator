@@ -15,6 +15,14 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var pickerUnit: UIPickerView!
     @IBOutlet weak var conversionLabel: UILabel!
     
+    //Picker data
+    var leftData: String = ""
+    var middleData: String = ""
+    var rightData: String = ""
+    
+    //Popup convert data
+    public var convertData: String = ""
+    
     //    var leftPicker :[String]!
     //    var middlePicker :[String]!
     //    var rightPicker :[String]!
@@ -59,11 +67,81 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     //Title box for end conversion when convert is clicked
     @IBAction func convertThings(_ sender: Any) {
         
-        //DO CONVERSION THINGS
+        let leftInt = Int(leftData)
+        let middleInt = Int(middleData)
         
-        conversionLabel.text = "I converted things!"
+        let initialData = leftInt! + middleInt!
+
+        
+        //DO CONVERSION THINGS
+        if middleData == convertData {
+            conversionLabel.text = "Same unit has been selected"
+        } else {
+            if middleData == "Tsp" {
+                if convertData == "Tbsp" {
+                    conversionLabel.text = String(initialData / 3)
+                } else if convertData == "Cup" {
+                    conversionLabel.text = String(initialData / (1/48))
+                } else if convertData == "Pint" {
+                    conversionLabel.text = String(initialData / (1/100))
+                } else if convertData == "Quart" {
+                    conversionLabel.text = String(initialData / (1/200))
+                }
+            } else if middleData == "Tbsp" {
+                if convertData == "Tsp" {
+                    conversionLabel.text = String(initialData * 3)
+                } else if convertData == "Cup" {
+                    conversionLabel.text = String(initialData * (5/8))
+                } else if convertData == "Pint" {
+                    conversionLabel.text = String(initialData * 32)
+                } else if convertData == "Quart" {
+                    conversionLabel.text = String(initialData * (17/64))
+                }
+            } else if middleData == "Cup" {
+                if convertData == "Tbsp" {
+                    conversionLabel.text = String(initialData / (5/8))
+                } else if convertData == "Tsp" {
+                    conversionLabel.text = String(initialData * (1/48))
+                } else if convertData == "Pint" {
+                    conversionLabel.text = String(initialData * 4)
+                } else if convertData == "Quart" {
+                    conversionLabel.text = String(initialData * (1/4))
+                }
+            } else if middleData == "Pint" {
+                if convertData == "Tbsp" {
+                    conversionLabel.text = String(initialData / 32)
+                } else if convertData == "Tsp" {
+                    conversionLabel.text = String(initialData * (1/100))
+                } else if convertData == "Cup" {
+                    conversionLabel.text = String(initialData / 4)
+                } else if convertData == "Quart" {
+                    conversionLabel.text = String(initialData * (1/2))
+                }
+            } else if middleData == "Quart" {
+                if convertData == "Tbsp" {
+                    conversionLabel.text = String(initialData / (17/64))
+                } else if convertData == "Tsp" {
+                    conversionLabel.text = String(initialData * (1/200))
+                } else if convertData == "Cup" {
+                    conversionLabel.text = String(initialData / (1/4))
+                } else if convertData == "Pint" {
+                    conversionLabel.text = String(initialData / (1/2))
+                }
+            } else if middleData == "Farenheit" {
+                if convertData == "Celsius" {
+                    conversionLabel.text = String((initialData - 32) * (5/9))
+                }
+            } else if middleData == "Celsius" {
+                if convertData == "Farenheit" {
+                    conversionLabel.text = String((initialData/(5/9)) + 32)
+                }
+            }
+        }
+        
+        
         
     }
+    
     
     //Returns number of rows for picker, --popup is also rightpicker
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int{
@@ -90,4 +168,5 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
         //        }
         return "none"
 }
-}
+
+    }
