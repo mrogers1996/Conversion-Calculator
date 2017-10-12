@@ -17,8 +17,8 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     @IBOutlet weak var segment: UISegmentedControl!
     
     //Picker data
-    var leftData: String = ""
-    var middleData: String = ""
+    var leftData: Int = 0
+    var middleData: Int = 0
     var rightData: String = ""
     
     //Popup convert data
@@ -76,17 +76,20 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
     //Title box for end conversion when convert is clicked
     @IBAction func convertThings(_ sender: Any) {
         
-        let leftInt = Int(leftData)
-        let middleInt = Int(middleData)
+        leftData = picker.selectedRow(inComponent: 0)
+        print(leftData)
+        middleData = picker.selectedRow(inComponent: 1)
+        print(middleData)
         
-        let initialData = leftInt! + middleInt!
+        //Not sure if this works????
+        let initialData = leftData + middleData
 
         
         //DO CONVERSION THINGS
-        if middleData == convertData {
+        if rightData == convertData {
             conversionLabel.text = "Same unit has been selected"
         } else {
-            if middleData == "Tsp" {
+            if rightData == "Tsp" {
                 if convertData == "Tbsp" {
                     conversionLabel.text = String(initialData / 3)
                 } else if convertData == "Cup" {
@@ -96,7 +99,7 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 } else if convertData == "Quart" {
                     conversionLabel.text = String(initialData / (1/200))
                 }
-            } else if middleData == "Tbsp" {
+            } else if rightData == "Tbsp" {
                 if convertData == "Tsp" {
                     conversionLabel.text = String(initialData * 3)
                 } else if convertData == "Cup" {
@@ -106,7 +109,7 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 } else if convertData == "Quart" {
                     conversionLabel.text = String(initialData * (17/64))
                 }
-            } else if middleData == "Cup" {
+            } else if rightData == "Cup" {
                 if convertData == "Tbsp" {
                     conversionLabel.text = String(initialData / (5/8))
                 } else if convertData == "Tsp" {
@@ -116,7 +119,7 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 } else if convertData == "Quart" {
                     conversionLabel.text = String(initialData * (1/4))
                 }
-            } else if middleData == "Pint" {
+            } else if rightData == "Pint" {
                 if convertData == "Tbsp" {
                     conversionLabel.text = String(initialData / 32)
                 } else if convertData == "Tsp" {
@@ -126,7 +129,7 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 } else if convertData == "Quart" {
                     conversionLabel.text = String(initialData * (1/2))
                 }
-            } else if middleData == "Quart" {
+            } else if rightData == "Quart" {
                 if convertData == "Tbsp" {
                     conversionLabel.text = String(initialData / (17/64))
                 } else if convertData == "Tsp" {
@@ -136,11 +139,11 @@ class PopupViewController: UIViewController, UIPickerViewDelegate, UIPickerViewD
                 } else if convertData == "Pint" {
                     conversionLabel.text = String(initialData / (1/2))
                 }
-            } else if middleData == "Farenheit" {
+            } else if rightData == "Farenheit" {
                 if convertData == "Celsius" {
                     conversionLabel.text = String((initialData - 32) * (5/9))
                 }
-            } else if middleData == "Celsius" {
+            } else if rightData == "Celsius" {
                 if convertData == "Farenheit" {
                     conversionLabel.text = String((initialData/(5/9)) + 32)
                 }

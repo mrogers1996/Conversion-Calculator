@@ -66,6 +66,9 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="35"/>
                                         <state key="normal" title="Convert"/>
+                                        <connections>
+                                            <action selector="convertThings:" destination="BYZ-38-t0r" eventType="touchUpInside" id="YEP-sk-bOG"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.90196079019999997" green="0.90196079019999997" blue="0.90196079019999997" alpha="1" colorSpace="calibratedRGB"/>
@@ -81,7 +84,7 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
                     <connections>
-                        <outlet property="conversionLabel" destination="qik-Hd-5bV" id="ax5-ax-nVT"/>
+                        <outlet property="conversionLabel" destination="qik-Hd-5bV" id="WfC-0q-QrA"/>
                         <outlet property="picker" destination="yfM-Qo-xit" id="GmP-9A-dzX"/>
                         <outlet property="segment" destination="L9l-AR-jfl" id="O8Z-4b-IE1"/>
                     </connections>
